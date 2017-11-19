@@ -28,7 +28,10 @@ library
   build-depends:
       base >=4.7 && <5
     , amazonka
+    , amazonka-kinesis
     , amazonka-s3
+    , amazonka-sns
+    , amazonka-sqs
     , directory
     , lens
     , shake

@@ -1,13 +1,16 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Lib
-  ( createHelloBucket
-  , deleteHelloBucket
+  ( createDaikuBucket
+  , deleteDaikuBucket
+  , createDaikuKinesisStream
+  , deleteDaikuKinesisStream
   , sendAws
   ) where
 
 import Control.Lens
 import Control.Monad.Trans.AWS
+import Network.AWS.Kinesis
 import Network.AWS.S3
 import System.IO
 
@@ -17,9 +20,15 @@ sendAws r = do
   env <- newEnv Discover <&> set envLogger lgr . set envRegion Oregon
   runResourceT . runAWST env $ send r
 
-createHelloBucket :: IO (Rs CreateBucket)
-createHelloBucket = sendAws $ createBucket "daiku-hello" &
+createDaikuBucket :: IO (Rs CreateBucket)
+createDaikuBucket = sendAws $ createBucket "daiku-bucket" &
     (cbCreateBucketConfiguration .~ Just (createBucketConfiguration & cbcLocationConstraint .~ Just (LocationConstraint Oregon)))
 
-deleteHelloBucket :: IO (Rs DeleteBucket)
-deleteHelloBucket = sendAws $ deleteBucket "daiku-hello"
+deleteDaikuBucket :: IO (Rs DeleteBucket)
+deleteDaikuBucket = sendAws $ deleteBucket "daiku-bucket"
+
+createDaikuKinesisStream :: IO (Rs CreateStream)
+createDaikuKinesisStream = sendAws $ createStream "daiku-stream" 1
+
+deleteDaikuKinesisStream :: IO (Rs DeleteStream)
+deleteDaikuKinesisStream = sendAws $ deleteStream "daiku-stream"
