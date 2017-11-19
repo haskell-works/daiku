@@ -28,6 +28,7 @@ library
   build-depends:
       base >=4.7 && <5
     , amazonka
+    , amazonka-dynamodb
     , amazonka-kinesis
     , amazonka-s3
     , amazonka-sns
