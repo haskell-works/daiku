@@ -26,14 +26,15 @@ library
   hs-source-dirs:
       src
   build-depends:
-      base >=4.7 && <5
-    , amazonka
+      amazonka
     , amazonka-dynamodb
     , amazonka-dynamodb-streams
     , amazonka-kinesis
     , amazonka-s3
     , amazonka-sns
     , amazonka-sqs
+    , base >=4.7 && <5
+    , conduit
     , directory
     , lens
     , shake

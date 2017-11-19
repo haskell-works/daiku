@@ -13,7 +13,6 @@ library:
   exposed-modules:
   - Lib
   dependencies:
-  - base >=4.7 && <5
   - amazonka
   - amazonka-dynamodb
   - amazonka-dynamodb-streams
@@ -21,6 +20,8 @@ library:
   - amazonka-s3
   - amazonka-sns
   - amazonka-sqs
+  - base >=4.7 && <5
+  - conduit
   - directory
   - lens
   - shake
