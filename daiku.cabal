@@ -34,10 +34,12 @@ library
     , amazonka-sns
     , amazonka-sqs
     , base >=4.7 && <5
+    , bytestring
     , conduit
     , directory
     , lens
     , shake
+    , text
   exposed-modules:
       Lib
   other-modules:

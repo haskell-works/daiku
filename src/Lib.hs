@@ -8,11 +8,16 @@ module Lib
   , createDynamoDbTable
   , createSqsQueue
   , sendAws
+  , kinesisPutConduit
   ) where
 
 import Control.Lens
-import Control.Monad.Trans.AWS
+import Control.Monad.IO.Class
+import Control.Monad.Trans.AWS hiding (await)
+import Data.ByteString
+import Data.Conduit
 import Data.List.NonEmpty
+import Data.Text
 import Network.AWS.DynamoDB
 import Network.AWS.Kinesis
 import Network.AWS.S3
@@ -45,3 +50,12 @@ createDynamoDbTable = sendAws $ createTable "daiku-table"
 
 createSqsQueue :: IO (Rs CreateQueue)
 createSqsQueue = sendAws $ createQueue "daiku-queue"
+
+kinesisPutConduit :: MonadIO m => Text -> Conduit (ByteString, Text) m PutRecordResponse
+kinesisPutConduit streamName = do
+  ma <- await
+  case ma of
+    Just (msg, key) -> do
+      resp <- liftIO $ sendAws $ putRecord streamName msg key
+      yield resp
+    Nothing         -> return ()
