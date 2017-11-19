@@ -5,11 +5,14 @@ module Lib
   , deleteDaikuBucket
   , createDaikuKinesisStream
   , deleteDaikuKinesisStream
+  , createDynamoDbTable
   , sendAws
   ) where
 
 import Control.Lens
 import Control.Monad.Trans.AWS
+import Data.List.NonEmpty
+import Network.AWS.DynamoDB
 import Network.AWS.Kinesis
 import Network.AWS.S3
 import System.IO
@@ -32,3 +35,8 @@ createDaikuKinesisStream = sendAws $ createStream "daiku-stream" 1
 
 deleteDaikuKinesisStream :: IO (Rs DeleteStream)
 deleteDaikuKinesisStream = sendAws $ deleteStream "daiku-stream"
+
+createDynamoDbTable :: IO (Rs CreateTable)
+createDynamoDbTable = sendAws $ createTable "daiku-table"
+  (keySchemaElement "id" Hash :| []) (provisionedThroughput 1 1)
+  & ctAttributeDefinitions .~ [attributeDefinition "id" S]
