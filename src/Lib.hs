@@ -6,6 +6,7 @@ module Lib
   , createDaikuKinesisStream
   , deleteDaikuKinesisStream
   , createDynamoDbTable
+  , createSqsQueue
   , sendAws
   ) where
 
@@ -15,6 +16,7 @@ import Data.List.NonEmpty
 import Network.AWS.DynamoDB
 import Network.AWS.Kinesis
 import Network.AWS.S3
+import Network.AWS.SQS
 import System.IO
 
 sendAws :: AWSRequest a => a -> IO (Rs a)
@@ -40,3 +42,6 @@ createDynamoDbTable :: IO (Rs CreateTable)
 createDynamoDbTable = sendAws $ createTable "daiku-table"
   (keySchemaElement "id" Hash :| []) (provisionedThroughput 1 1)
   & ctAttributeDefinitions .~ [attributeDefinition "id" S]
+
+createSqsQueue :: IO (Rs CreateQueue)
+createSqsQueue = sendAws $ createQueue "daiku-queue"
