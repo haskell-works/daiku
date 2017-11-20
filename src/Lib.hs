@@ -10,16 +10,17 @@ module Lib
   , listSnsSubscriptions
   , createSqsQueue
   , sendAws
-  , kinesisPutConduit
+  , kinesisPutKV
   ) where
 
 import Control.Lens
 import Control.Monad.IO.Class
-import Control.Monad.Trans.AWS hiding (await)
-import Data.ByteString
+import Control.Monad.Trans.AWS     hiding (await)
 import Data.Conduit
 import Data.List.NonEmpty
 import Data.Text
+import Network.AWS.Data.ByteString
+import Network.AWS.Data.Text
 import Network.AWS.DynamoDB
 import Network.AWS.Kinesis
 import Network.AWS.S3
@@ -54,12 +55,12 @@ createDynamoDbTable = sendAws $ createTable "daiku-table"
 createSqsQueue :: MonadIO m => m (Rs CreateQueue)
 createSqsQueue = sendAws $ createQueue "daiku-queue"
 
-kinesisPutConduit :: MonadIO m => Text -> Conduit (ByteString, Text) m PutRecordResponse
-kinesisPutConduit streamName = do
+kinesisPutKV :: (MonadIO m, ToText k, ToByteString v) => Text -> Conduit (k, v) m PutRecordResponse
+kinesisPutKV streamName = do
   ma <- await
   case ma of
-    Just (msg, key) -> do
-      resp <- liftIO $ sendAws $ putRecord streamName msg key
+    Just (k, v) -> do
+      resp <- liftIO $ sendAws $ putRecord streamName (toBS v) (toText k)
       yield resp
     Nothing         -> return ()
 

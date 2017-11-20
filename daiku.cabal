@@ -27,6 +27,7 @@ library
       src
   build-depends:
       amazonka
+    , amazonka-core
     , amazonka-dynamodb
     , amazonka-dynamodb-streams
     , amazonka-kinesis
