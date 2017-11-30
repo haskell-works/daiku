@@ -10,8 +10,7 @@ extra-source-files:
 - README.md
 library:
   source-dirs: src
-  exposed-modules:
-  - Lib
+  exposed-modules: []
   dependencies:
   - amazonka
   - amazonka-core

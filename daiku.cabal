@@ -41,9 +41,14 @@ library
     , lens
     , shake
     , text
-  exposed-modules:
-      Lib
   other-modules:
+      Daiku.Aws.Core
+      Daiku.Aws.DynamoDb
+      Daiku.Aws.Kinesis.Conduit
+      Daiku.Aws.Kinesis.Core
+      Daiku.Aws.S3.Core
+      Daiku.Aws.Sns.Core
+      Daiku.Aws.Sqs.Core
       Paths_daiku
   default-language: Haskell2010
 
