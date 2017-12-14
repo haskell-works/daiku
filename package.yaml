@@ -30,6 +30,7 @@ library:
   - optparse-applicative
   - shake
   - text
+  - yaml
 executables:
   daiku-exe:
     main: Main.hs

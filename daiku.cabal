@@ -44,6 +44,7 @@ library
     , optparse-applicative
     , shake
     , text
+    , yaml
   other-modules:
       Daiku.Aws.Core
       Daiku.Aws.DynamoDb
