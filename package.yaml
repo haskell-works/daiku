@@ -12,6 +12,7 @@ library:
   source-dirs: src
   exposed-modules: []
   dependencies:
+  - aeson
   - amazonka
   - amazonka-core
   - amazonka-dynamodb
@@ -21,10 +22,12 @@ library:
   - amazonka-sns
   - amazonka-sqs
   - base >=4.7 && <5
+  - BoundedChan
   - bytestring
   - conduit
   - directory
   - lens
+  - optparse-applicative
   - shake
   - text
 executables:
