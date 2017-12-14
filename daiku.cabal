@@ -54,6 +54,7 @@ library
       Daiku.Aws.Sns.Core
       Daiku.Aws.Sqs.Core
       Daiku.Commands
+      Daiku.Pod
       Paths_daiku
   default-language: Haskell2010
 
