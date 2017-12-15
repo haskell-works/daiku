@@ -42,6 +42,7 @@ library
     , directory
     , lens
     , optparse-applicative
+    , raw-strings-qq
     , shake
     , text
     , yaml
