@@ -39,6 +39,7 @@ library
     , BoundedChan
     , bytestring
     , conduit
+    , containers
     , directory
     , lens
     , optparse-applicative
