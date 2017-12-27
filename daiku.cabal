@@ -1,6 +1,8 @@
--- This file has been generated from package.yaml by hpack version 0.17.1.
+-- This file has been generated from package.yaml by hpack version 0.20.0.
 --
 -- see: https://github.com/sol/hpack
+--
+-- hash: 75970429dc18ff1239f5a7ccf3f3e64ac5e5389498a91f62a63b6852011c5920
 
 name:           daiku
 version:        0.1.0.0
@@ -26,7 +28,8 @@ library
   hs-source-dirs:
       src
   build-depends:
-      aeson
+      BoundedChan
+    , aeson
     , amazonka
     , amazonka-core
     , amazonka-dynamodb
@@ -36,7 +39,6 @@ library
     , amazonka-sns
     , amazonka-sqs
     , base >=4.7 && <5
-    , BoundedChan
     , bytestring
     , conduit
     , containers
@@ -56,6 +58,7 @@ library
       Daiku.Aws.Sns.Core
       Daiku.Aws.Sqs.Core
       Daiku.Commands
+      Daiku.Pod
       Daiku.Template
       Paths_daiku
   default-language: Haskell2010
@@ -70,6 +73,8 @@ executable daiku-exe
     , daiku
     , directory
     , shake
+  other-modules:
+      Paths_daiku
   default-language: Haskell2010
 
 test-suite daiku-test
@@ -81,4 +86,6 @@ test-suite daiku-test
   build-depends:
       base
     , daiku
+  other-modules:
+      Paths_daiku
   default-language: Haskell2010
