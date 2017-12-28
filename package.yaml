@@ -45,6 +45,7 @@ executables:
     - base
     - daiku
     - directory
+    - optparse-applicative
     - shake
 tests:
   daiku-test:

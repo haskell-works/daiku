@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 75970429dc18ff1239f5a7ccf3f3e64ac5e5389498a91f62a63b6852011c5920
+-- hash: 81292ec5dffd62fba1cf739f28f784d1f593804665e9fcfaab90510b30948b2d
 
 name:           daiku
 version:        0.1.0.0
@@ -58,7 +58,6 @@ library
       Daiku.Aws.Sns.Core
       Daiku.Aws.Sqs.Core
       Daiku.Commands
-      Daiku.Pod
       Daiku.Template
       Paths_daiku
   default-language: Haskell2010
@@ -72,6 +71,7 @@ executable daiku-exe
       base
     , daiku
     , directory
+    , optparse-applicative
     , shake
   other-modules:
       Paths_daiku
